@@ -1,0 +1,66 @@
+{ok,0}
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+Where am I going to appear?
+ok
+16: io:format("Where am I going to appear?~n")
+-> ok
+17: io:format("Where am I going to appear?~n")
+-> ok
+18: io:format("Where am I going to appear?~n")
+-> ok
+19: io:format("Where am I going to appear?~n")
+-> ok
+20: io:format("Where am I going to appear?~n")
+-> ok
+21: io:format("Where am I going to appear?~n")
+-> ok
+22: io:format("Where am I going to appear?~n")
+-> ok
+23: file:position(F, 0)
+-> {ok,0}
+24: io:format("Where am I going to appear?~n")
+-> ok
+25: io:format("Where am I going to appear?~n")
+-> ok
+26: io:format("Where am I going to appear?~n")
+-> ok
+27: io:format("Where am I going to appear?~n")
+-> ok
+28: io:format("Where am I going to appear?~n")
+-> ok
+29: io:format("Where am I going to appear?~n")
+-> ok
+30: io:format("Where am I going to appear?~n")
+-> ok
+31: io:format("Where am I going to appear?~n")
+-> ok
+32: io:format("Where am I going to appear?~n")
+-> ok
+33: io:format("Where am I going to appear?~n")
+-> ok
+34: io:format("Where am I going to appear?~n")
+-> ok
+35: io:format("Where am I going to appear?~n")
+-> ok
+ok
