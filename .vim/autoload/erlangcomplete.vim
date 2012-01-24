@@ -22,7 +22,7 @@ if !exists('g:erlangManSuffix')
 endif
 
 if !exists('g:erlangManPath')
-	let g:erlangManPath = '/usr/lib/erlang/manchemist'
+	let g:erlangManPath = '/usr/lib/erlang/man'
 endif
 
 if !exists('g:erlangCompletionDisplayDoc')

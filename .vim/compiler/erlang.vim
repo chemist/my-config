@@ -13,12 +13,11 @@ if exists(":CompilerSet") != 2
 endif
 
 if !exists('g:erlangCheckFile')
-"    let g:erlangCheckFile = "~/.vim/compiler/erlang_check_file.erl"
-    let g:erlangCheckFile = "~/.vim/compiler/eee.erl"
+    let g:erlangCheckFile = "~/.vim/compiler/erlang_check_file.erl"
 endif
 
 if !exists('g:erlangHighlightErrors')
-    let g:erlangHighlightErrors = 1
+    let g:erlangHighlightErrors = 0
 endif
 
 let b:error_list = {}
@@ -26,9 +25,9 @@ let b:is_showing_msg = 0
 
 function! HighlightErlangErrors()
     if match(getline(1), "#!.*escript") != -1
-        setlocal makeprg=escript\ -s\ %:p
+        setlocal makeprg=escript\ -s\ %
     else
-        execute "setlocal makeprg=" . g:erlangCheckFile . "\\ \%:p"
+        execute "setlocal makeprg=" . g:erlangCheckFile . "\\ \%"
     endif
     silent make!
     call s:clear_matches()
