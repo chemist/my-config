@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/etc/make.profile'
-let g:netrw_dirhist_2='/home/chemist/.vim'
-let g:netrw_dirhist_3='/home/chemist/.erlware'
-let g:netrw_dirhist_4='/home/chemist/erlang/web/webmachine/webmachine/library/src'
-let g:netrw_dirhist_5='/home/chemist/develop/haskell/lord-web/Settings'
-let g:netrw_dirhist_6='/home/chemist/develop/haskell/lord-web/Handler'
