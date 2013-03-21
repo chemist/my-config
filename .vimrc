@@ -26,8 +26,9 @@ syntax on
 
 au BufEnter *.erl map <F9> :!rebar compile<CR>
 au BufEnter *.hs map <F9> :make<CR>
-map <F8> :NERDTree<CR>
-map <F7> :NERDTreeClose<CR>
+map <F8> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeShowBookmarks = 1
 colorscheme desert256
 filetype plugin indent on
 " haskell autocomplete
@@ -67,6 +68,7 @@ au FileType haskell nnoremap <buffer> ,i :HdevtoolsInfo<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 
 let g:cumino_ghci_args = "-XOverloadedStrings"
+let g:cumino_default_terminal = "urxvt"
 
 let g:tagbar_ctags_bin = "~/.cabal/bin/lushtags"
 let g:tagbar_type_haskell = {
