@@ -45,7 +45,7 @@ au BufEnter *.hs compiler ghc
 let g:haddock_indexfiledir = "/home/chemist/.vim/"
 let g:haddock_browser="/usr/bin/elinks"
 let g:haddock_browser_callformat = '%s -remote "openURL(%s)" '
-au BufEnter *.hs map <F12> _?
+
 au BufNewFile,BufRead *.yaml,*.yml    setf yaml
 
 let g:jsbeautify_engine = "node"
@@ -55,20 +55,10 @@ autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
   "     " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-" set locallleader
-let maplocalleader = "-"
-map <F11> -cc 
-" bind <F3> for send buffer
-au BufEnter *.hs map <F2> :w<cr>-cb
-" bind <F4> for send visual
-map <F4> -cv
 
 au FileType haskell nnoremap <buffer> ,t :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> ,i :HdevtoolsInfo<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
-
-let g:cumino_ghci_args = "-XOverloadedStrings"
-let g:cumino_default_terminal = "urxvt"
 
 let g:tagbar_ctags_bin = "~/.cabal/bin/lushtags"
 let g:tagbar_type_haskell = {
