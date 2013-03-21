@@ -46,6 +46,9 @@ let g:haddock_indexfiledir = "/home/chemist/.vim/"
 let g:haddock_browser="/usr/bin/elinks"
 let g:haddock_browser_callformat = '%s -remote "openURL(%s)" '
 
+au FileType haskell map <buffer> ,h _?
+au FileType haskell map <buffer> ,o _?1
+
 au BufNewFile,BufRead *.yaml,*.yml    setf yaml
 
 let g:jsbeautify_engine = "node"
