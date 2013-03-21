@@ -38,13 +38,70 @@ let g:acp_enableAtStartup = 0
 "let g:neocomplcache_enable_underbar_completion = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>" 
 
-let $PATH=$PATH."/usr/bin/"
+let $PATH=$PATH."/usr/bin/"."/home/chemist/.cabal/bin/"
 let erlang_folding = 1
 au BufEnter *.hs compiler ghc
 let g:haddock_indexfiledir = "/home/chemist/.vim/"
 let g:haddock_browser="/usr/bin/elinks"
 let g:haddock_browser_callformat = '%s -remote "openURL(%s)" '
 au BufEnter *.hs map <F12> _?
+au BufNewFile,BufRead *.yaml,*.yml    setf yaml
+
+let g:jsbeautify_engine = "node"
+let g:htmlbeautify = {'indent_size': 2, 'indent_char': ' ', 'max_char': 78, 'brace_style': 'expand', 'unformatted': ['a', 'sub', 'sup', 'b', 'i', 'u']}
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+  " for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+  "     " for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+" set locallleader
+let maplocalleader = "-"
+map <F11> -cc 
+" bind <F3> for send buffer
+au BufEnter *.hs map <F2> :w<cr>-cb
+" bind <F4> for send visual
+map <F4> -cv
+
+au FileType haskell nnoremap <buffer> ,t :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> ,i :HdevtoolsInfo<CR>
+au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+
+let g:cumino_ghci_args = "-XOverloadedStrings"
+
+let g:tagbar_ctags_bin = "~/.cabal/bin/lushtags"
+let g:tagbar_type_haskell = {
+    \ 'ctagsbin' : '~/.cabal/bin/lushtags',
+    \ 'ctagsargs' : '--ignore-parse-error --',
+    \ 'kinds' : [
+        \ 'm:module:0',
+        \ 'e:exports:1',
+        \ 'i:imports:1',
+        \ 't:declarations:0',
+        \ 'd:declarations:1',
+        \ 'n:declarations:1',
+        \ 'f:functions:0',
+        \ 'c:constructors:0'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 'd' : 'data',
+        \ 'n' : 'newtype',
+        \ 'c' : 'constructor',
+        \ 't' : 'type'
+    \ },
+    \ 'scope2kind' : {
+        \ 'data' : 'd',
+        \ 'newtype' : 'n',
+        \ 'constructor' : 'c',
+        \ 'type' : 't'
+    \ }
+\ }
+
+au FileType haskell nnoremap <silent> ,, :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose = 1
+"python
+
 
 
 map ё `

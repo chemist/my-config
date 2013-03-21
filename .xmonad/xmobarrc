@@ -1,4 +1,4 @@
-Config { font = "xft:Liberation Mono-8:regular"
+Config { font = "xft:Liberation Mono:size=9"
        , bgColor = "#323232"
        , fgColor = "#EEEEEC"
        , position = Bottom

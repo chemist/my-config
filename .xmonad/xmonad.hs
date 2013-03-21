@@ -23,22 +23,27 @@ import XMonad.Util.Run
 import XMonad.Util.EZConfig
 import XMonad.Util.Cursor
 import XMonad.Util.Scratchpad
+import XMonad.Layout.Accordion
 
 import qualified XMonad.StackSet as W
 import System.IO
+import XMonad.Hooks.SetWMName
 
-myWorkspaces = ["α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ" ]
+import XMonad.Layout.IM as IM
+import Data.Ratio ((%))
+import XMonad.Layout.Reflect 
+
+myWorkspaces = ["α", "β", "γ", "δ", "ε", "ζ"]
+
 myManageHook = composeAll $ [
-    className =? "Skype"           --> doFloat 
-  , className =? "Skype"           --> doF (W.shift "ζ") 
-  , className =? "pidgin"           --> doFloat
+  className =? "Skype"           --> doF (W.shift "ζ") 
   , className =? "pidgin"           --> doF (W.shift "ζ") 
-  , className =? "Pidgin"           --> doFloat
   , className =? "Pidgin"           --> doF (W.shift "ζ") 
   , className =? "zathura"           --> doF (W.shift "γ") 
   , className =? "Zathura"           --> doF (W.shift "γ") 
   , className =? "XCalc"           --> doFloat
   , className =? "xcalc"           --> doFloat
+  , appName   =? "Calculator"  --> doFloat
   , className =? "audacious"       --> doFloat
   , className =? "Audacious"       --> doFloat
   , className =? "gvim"       --> doFloat
@@ -56,13 +61,16 @@ myManageHook = composeAll $ [
     t = 1 - h
     l = (1 - w)/2
 
-myLayout = tiled ||| onWorkspace "η" (ThreeCol 1 (1/100) (1/2)) Full ||| Mirror tiled
-  
+myLayout = imLayout ||| tiled ||| Accordion ||| Full ||| Mirror tiled
   where
     tiled   = ResizableTall nmaster delta ratio []
     nmaster = 1
     ratio   = 1/2
     delta   = 1/100
+
+imLayout = withIM (0.22) isSkype $ reflectHoriz $ withIM (0.18) (Role "buddy_list") Accordion
+  where
+    isSkype = (IM.Or (IM.Title "chemist-vik - Skype™ (Beta)")(IM.Title "Skype™ 2.1 (Beta) for Linux"))
 
 gsconfig = defaultGSConfig {
   gs_cellheight = 25
@@ -92,19 +100,19 @@ myKeys =
   -- Move focus to the next window
   , ((mod1Mask,               xK_Tab   ), windows W.focusDown)
   -- Move focus to the next window
-  , ((mod1Mask,               xK_j     ), windows W.focusDown)
+  , ((mod4Mask,               xK_j     ), windows W.focusDown)
   -- Move focus to the previous window
-  , ((mod1Mask,               xK_k     ), windows W.focusUp  )
+  , ((mod4Mask,               xK_k     ), windows W.focusUp  )
   -- Move focus to the master window
-  , ((mod1Mask,               xK_m     ), windows W.focusMaster  )
+  , ((mod4Mask,               xK_m     ), windows W.focusMaster  )
   -- Swap the focused window and the master window
   , ((mod1Mask,               xK_Return), windows W.swapUp >> windows W.focusMaster)
   -- Swap the focused window with the next window
-  , ((mod1Mask .|. shiftMask, xK_j     ), windows W.swapDown  )
+  , ((mod4Mask .|. shiftMask, xK_j     ), windows W.swapDown  )
   -- Swap the focused window with the previous window
-  , ((mod1Mask .|. shiftMask, xK_k     ), windows W.swapUp    )
-  -- Push window back into tiling
-  , ((mod1Mask,               xK_t     ), withFocused $ windows . W.sink)
+  , ((mod4Mask .|. shiftMask, xK_k     ), windows W.swapUp    )
+  -- Push window back into tiling 
+  , ((mod4Mask,               xK_t     ), withFocused $ windows . W.sink)
   ]
   ++
   [
@@ -130,11 +138,11 @@ myLogHook xmproc = dynamicLogWithPP $ xmobarPP {
   
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar /home/chemist/.xmonad/xmobarrc"
-  xmonad $ ewmh defaultConfig {
-    startupHook     = setDefaultCursor xC_left_ptr
+  xmonad $ defaultConfig {
+    startupHook = setDefaultCursor xC_left_ptr <+> setWMName "LG3D"
     , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
     , layoutHook = avoidStruts $ smartBorders $ myLayout
-    , modMask = mod1Mask       -- Rebind Mod to Windows key
+    , modMask = mod4Mask       -- Rebind Mod to Windows key
     , terminal = "urxvt"
     , workspaces = myWorkspaces
     , normalBorderColor = "#D3D7CF"
