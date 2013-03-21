@@ -33,25 +33,43 @@ import XMonad.Layout.IM as IM
 import Data.Ratio ((%))
 import XMonad.Layout.Reflect 
 
-myWorkspaces = ["α", "β", "γ", "δ", "ε", "ζ"]
+myWorkspaces = ["alpha", "beta", "gamma", "delta", "epsilon", "ζ"]
 
 myManageHook = composeAll $ [
   className =? "Skype"           --> doF (W.shift "ζ") 
   , className =? "pidgin"           --> doF (W.shift "ζ") 
   , className =? "Pidgin"           --> doF (W.shift "ζ") 
-  , className =? "zathura"           --> doF (W.shift "γ") 
-  , className =? "Zathura"           --> doF (W.shift "γ") 
+  , className =? "zathura"           --> doF (W.shift "gamma") 
+  , className =? "Zathura"           --> doF (W.shift "gamma") 
   , className =? "XCalc"           --> doFloat
   , className =? "xcalc"           --> doFloat
   , appName   =? "Calculator"  --> doFloat
+
+import qualified XMonad.StackSet as W
+import System.IO
+
+myWorkspaces = ["alpha", "beta", "gamma", "delta", "epsilon", "ζ", "η", "θ", "ι", "κ"]
+---myWorkspaces = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta", "theta", "ι", "κ" ]
+myManageHook = composeAll [
+    className =? "Skype"           --> doFloat
+  , className =? "Skype"           --> doF (W.shift "ζ")
+  , className =? "pidgin"           --> doFloat
+  , className =? "pidgin"           --> doF (W.shift "ζ")
+  , className =? "Pidgin"           --> doFloat
+  , className =? "Pidgin"           --> doF (W.shift "ζ")
+  , className =? "zathura"           --> doF (W.shift "gamma")
+  , className =? "Zathura"           --> doF (W.shift "gamma")
+  , className =? "XCalc"           --> doFloat
+  , className =? "xcalc"           --> doFloat
   , className =? "audacious"       --> doFloat
   , className =? "Audacious"       --> doFloat
   , className =? "gvim"       --> doFloat
   , className =? "Gvim"       --> doFloat
   , className =? "Dia"           --> doFloat
-  , className =? "chromium"     --> doF (W.shift "β")
-  , className =? "Chromium"     --> doF (W.shift "β")
+  , className =? "chromium"     --> doF (W.shift "beta")
+  , className =? "Chromium"     --> doF (W.shift "beta")
   , className =? "Toplevel"       --> doFloat 
+  , className =? "Toplevel"       --> doFloat
   , isFullscreen                 --> doFullFloat
   , scratchpadManageHook (W.RationalRect l t w h)
   ]
@@ -62,6 +80,7 @@ myManageHook = composeAll $ [
     l = (1 - w)/2
 
 myLayout = imLayout ||| tiled ||| Accordion ||| Full ||| Mirror tiled
+
   where
     tiled   = ResizableTall nmaster delta ratio []
     nmaster = 1
@@ -83,7 +102,7 @@ myXPConfig = defaultXPConfig {
   , position = Top
   }
 
-myKeys = 
+myKeys =
   [
   ((mod1Mask, xK_p), shellPrompt myXPConfig)
   , ((mod1Mask .|. shiftMask, xK_h), sendMessage MirrorExpand)
@@ -100,19 +119,19 @@ myKeys =
   -- Move focus to the next window
   , ((mod1Mask,               xK_Tab   ), windows W.focusDown)
   -- Move focus to the next window
-  , ((mod4Mask,               xK_j     ), windows W.focusDown)
+  , ((mod1Mask,               xK_j     ), windows W.focusDown)
   -- Move focus to the previous window
-  , ((mod4Mask,               xK_k     ), windows W.focusUp  )
+  , ((mod1Mask,               xK_k     ), windows W.focusUp  )
   -- Move focus to the master window
-  , ((mod4Mask,               xK_m     ), windows W.focusMaster  )
+  , ((mod1Mask,               xK_m     ), windows W.focusMaster  )
   -- Swap the focused window and the master window
   , ((mod1Mask,               xK_Return), windows W.swapUp >> windows W.focusMaster)
   -- Swap the focused window with the next window
-  , ((mod4Mask .|. shiftMask, xK_j     ), windows W.swapDown  )
+  , ((mod1Mask .|. shiftMask, xK_j     ), windows W.swapDown  )
   -- Swap the focused window with the previous window
-  , ((mod4Mask .|. shiftMask, xK_k     ), windows W.swapUp    )
-  -- Push window back into tiling 
-  , ((mod4Mask,               xK_t     ), withFocused $ windows . W.sink)
+  , ((mod1Mask .|. shiftMask, xK_k     ), windows W.swapUp    )
+  -- Push window back into tiling
+  , ((mod1Mask,               xK_t     ), withFocused $ windows . W.sink)
   ]
   ++
   [
@@ -120,8 +139,8 @@ myKeys =
        | (i, k) <- zip myWorkspaces ([xK_1..xK_9] ++ [xK_0])
        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
   ]
-  
-myLogHook xmproc = dynamicLogWithPP $ xmobarPP {
+
+myLogHook xmproc = dynamicLogWithPP  xmobarPP {
   ppOutput = hPutStrLn xmproc
   , ppCurrent = xmobarColor "lightblue" "#282828" . wrap "[" "]"
   , ppHiddenNoWindows = xmobarColor "#777777" "" . noScratchPad

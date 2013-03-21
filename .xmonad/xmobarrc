@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Config { font = "xft:Liberation Mono:size=9"
+=======
+Config { font = "xft:Liberation Mono-8:regular"
+>>>>>>> b4892427557fd124dc0bef142d9dab07b99cdbb1
        , bgColor = "#323232"
        , fgColor = "#EEEEEC"
        , position = Bottom

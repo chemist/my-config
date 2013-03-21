@@ -128,7 +128,4 @@ alias screenracket='screen -S racket -t racket racket'
 alias screenvim='screen -S scheme -t scheme vim ~/scheme/bookread/book.scm'
 alias git-help='cat ~/.git-help'
 alias book='cd /home/chemist/scheme/bookread'
-alias yesod-env='source /home/chemist/develop/haskell/yesod-env/.virthualenv/bin/activate'
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-export PYTHONSTARTUP="$HOME/.pystartup"

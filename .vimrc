@@ -103,7 +103,6 @@ let g:tagbar_autoclose = 1
 "python
 
 
-
 map ё `
 map й q
 map ц w

@@ -62,11 +62,19 @@ function s:UTF8ToHaskellSrc()
     silent %s/»/>>/eg
     silent %s/∘ /. /eg
     silent %s/∀/forall /eg
+<<<<<<< HEAD
     silent %s/α/alpha/eg
     silent %s/β/beta/eg
     silent %s/γ/gamma/eg
     silent %s/δ/delta/eg
     silent %s/ε/epsilon/eg
+=======
+"    silent %s/α/alpha/eg
+"    silent %s/β/beta/eg
+"    silent %s/γ/gamma/eg
+"    silent %s/δ/delta/eg
+"    silent %s/ε/epsilon/eg
+>>>>>>> b4892427557fd124dc0bef142d9dab07b99cdbb1
     silent %s/∧/\&\&/eg
     silent %s/∨/\|\|/eg
     silent %s/⊗/<*>/eg
@@ -97,11 +105,11 @@ function s:HaskellSrcToUTF8()
     silent %s/[^λ←→≲≳≡≠⇒»∘∀\\\-!#$%&*+/<=>?@\^|~.]\@<=>>\([^λ←→≲≳≡≠⇒»∘∀\\\-!#$%&*+/<=>\?@\^|~.]\)/»\1/eg
     silent %s/forall /∀/eg
     silent %s/ \@<=\. /∘ /eg
-    silent %s/alpha/α/eg
-    silent %s/beta/β/eg
-    silent %s/gamma/γ/eg
-    silent %s/delta/δ/eg
-    silent %s/epsilon/ε/eg
+"    silent %s/alpha/α/eg
+"    silent %s/beta/β/eg
+"    silent %s/gamma/γ/eg
+"    silent %s/delta/δ/eg
+"    silent %s/epsilon/ε/eg
     silent %s/\V&&/∧/eg
     silent %s/\V||/∨/eg
     silent %s/<\*>/⊗/eg
