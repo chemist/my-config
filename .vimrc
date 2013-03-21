@@ -39,7 +39,7 @@ let g:acp_enableAtStartup = 0
 "let g:neocomplcache_enable_underbar_completion = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>" 
 
-let $PATH=$PATH."/usr/bin/"."/home/chemist/.cabal/bin/"
+let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 let erlang_folding = 1
 au BufEnter *.hs compiler ghc
 let g:haddock_indexfiledir = "/home/chemist/.vim/"
