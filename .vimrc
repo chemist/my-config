@@ -26,10 +26,12 @@ syntax on
 
 au BufEnter *.erl map <F9> :!rebar compile<CR>
 au BufEnter *.hs map <F9> :make<CR>
+au BufEnter *.go map <F9> :!go build<CR>
 map <F8> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowBookmarks = 1
 colorscheme desert256
+"colorscheme pablo
 filetype plugin indent on
 " haskell autocomplete
 let g:neocomplcache_enable_at_startup = 1
@@ -59,9 +61,14 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
   "     " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
+autocmd FileType haskell noremap <buffer> <c-f> :call StylishHaskell()<cr>
+
+"let g:hdevtools_options = '-g -Wall'
+
 au FileType haskell nnoremap <buffer> ,t :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> ,i :HdevtoolsInfo<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+
 
 let g:tagbar_ctags_bin = "~/.cabal/bin/lushtags"
 let g:tagbar_type_haskell = {
@@ -96,7 +103,6 @@ au FileType haskell nnoremap <silent> ,, :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
 "python
-
 
 map ё `
 map й q

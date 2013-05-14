@@ -33,43 +33,25 @@ import XMonad.Layout.IM as IM
 import Data.Ratio ((%))
 import XMonad.Layout.Reflect 
 
-myWorkspaces = ["alpha", "beta", "gamma", "delta", "epsilon", "ζ"]
+myWorkspaces = ["α", "β", "γ", "δ", "ε", "ζ"]
 
 myManageHook = composeAll $ [
   className =? "Skype"           --> doF (W.shift "ζ") 
   , className =? "pidgin"           --> doF (W.shift "ζ") 
   , className =? "Pidgin"           --> doF (W.shift "ζ") 
-  , className =? "zathura"           --> doF (W.shift "gamma") 
-  , className =? "Zathura"           --> doF (W.shift "gamma") 
+  , className =? "zathura"           --> doF (W.shift "γ") 
+  , className =? "Zathura"           --> doF (W.shift "γ") 
   , className =? "XCalc"           --> doFloat
   , className =? "xcalc"           --> doFloat
   , appName   =? "Calculator"  --> doFloat
-
-import qualified XMonad.StackSet as W
-import System.IO
-
-myWorkspaces = ["alpha", "beta", "gamma", "delta", "epsilon", "ζ", "η", "θ", "ι", "κ"]
----myWorkspaces = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta", "theta", "ι", "κ" ]
-myManageHook = composeAll [
-    className =? "Skype"           --> doFloat
-  , className =? "Skype"           --> doF (W.shift "ζ")
-  , className =? "pidgin"           --> doFloat
-  , className =? "pidgin"           --> doF (W.shift "ζ")
-  , className =? "Pidgin"           --> doFloat
-  , className =? "Pidgin"           --> doF (W.shift "ζ")
-  , className =? "zathura"           --> doF (W.shift "gamma")
-  , className =? "Zathura"           --> doF (W.shift "gamma")
-  , className =? "XCalc"           --> doFloat
-  , className =? "xcalc"           --> doFloat
   , className =? "audacious"       --> doFloat
   , className =? "Audacious"       --> doFloat
   , className =? "gvim"       --> doFloat
   , className =? "Gvim"       --> doFloat
   , className =? "Dia"           --> doFloat
-  , className =? "chromium"     --> doF (W.shift "beta")
-  , className =? "Chromium"     --> doF (W.shift "beta")
+  , className =? "chromium"     --> doF (W.shift "β")
+  , className =? "Chromium"     --> doF (W.shift "β")
   , className =? "Toplevel"       --> doFloat 
-  , className =? "Toplevel"       --> doFloat
   , isFullscreen                 --> doFullFloat
   , scratchpadManageHook (W.RationalRect l t w h)
   ]
@@ -80,7 +62,6 @@ myManageHook = composeAll [
     l = (1 - w)/2
 
 myLayout = imLayout ||| tiled ||| Accordion ||| Full ||| Mirror tiled
-
   where
     tiled   = ResizableTall nmaster delta ratio []
     nmaster = 1
@@ -89,20 +70,20 @@ myLayout = imLayout ||| tiled ||| Accordion ||| Full ||| Mirror tiled
 
 imLayout = withIM (0.22) isSkype $ reflectHoriz $ withIM (0.18) (Role "buddy_list") Accordion
   where
-    isSkype = (IM.Or (IM.Title "chemist-vik - Skype™ (Beta)")(IM.Title "Skype™ 2.1 (Beta) for Linux"))
+    isSkype = IM.Title "chemist-vik - Skype™"
 
 gsconfig = defaultGSConfig {
   gs_cellheight = 25
   , gs_cellwidth = 200
-  , gs_font = "xft:Liberation Mono:size=9"
+  , gs_font = "xft:UbuntuMono-RI:size=10:autohint=true"
   }
 
 myXPConfig = defaultXPConfig {
-  font = "xft:Liberation Mono:size=9"
+  font = "xft:UbuntuMono-RI:size=10:autohint=true"
   , position = Top
   }
 
-myKeys =
+myKeys = 
   [
   ((mod1Mask, xK_p), shellPrompt myXPConfig)
   , ((mod1Mask .|. shiftMask, xK_h), sendMessage MirrorExpand)
@@ -139,16 +120,18 @@ myKeys =
        | (i, k) <- zip myWorkspaces ([xK_1..xK_9] ++ [xK_0])
        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
   ]
-
-myLogHook xmproc = dynamicLogWithPP  xmobarPP {
+  
+myLogHook xmproc = dynamicLogWithPP $ xmobarPP {
   ppOutput = hPutStrLn xmproc
   , ppCurrent = xmobarColor "lightblue" "#282828" . wrap "[" "]"
   , ppHiddenNoWindows = xmobarColor "#777777" "" . noScratchPad
   , ppHidden = noScratchPad
   , ppLayout = (\x -> case x of
-                                "ResizableTall" -> "T"
-                                "Mirror ResizableTall" -> "-"
-                                "Full" -> "F")
+                             "Accordion" -> "A"
+                             "ResizableTall" -> "T"
+                             "Mirror ResizableTall" -> "-"
+                             "Full" -> "F"
+                             _ -> "O")
   , ppTitle = const ""
   , ppSep = " | "
   }
@@ -161,7 +144,7 @@ main = do
     startupHook = setDefaultCursor xC_left_ptr <+> setWMName "LG3D"
     , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
     , layoutHook = avoidStruts $ smartBorders $ myLayout
-    , modMask = mod4Mask       -- Rebind Mod to Windows key
+    , modMask = mod1Mask       -- Rebind Mod to Windows key
     , terminal = "urxvt"
     , workspaces = myWorkspaces
     , normalBorderColor = "#D3D7CF"

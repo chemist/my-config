@@ -103,10 +103,9 @@ alias grep='grep --color=auto'
 alias clearx='sudo kill -USR1 `ps -C X -o pid=`'
 
 
-#export GEM_HOME=/opt/ruby
-#export PATH=/opt/ruby/bin/:$PATH
-export PATH=$PATH:/home/chemist/.cabal/bin/
-#export RUBYOPT=rubygems
+export PATH=/home/chemist/.haskell/bin/:$PATH:/home/chemist/.cabal/bin/:~/develop/go/.gocode/bin
+export GOPATH=~/develop/go/.gocode
+
 	bindkey "^[[H" beginning-of-line
 	bindkey "^[[F" end-of-line
 
@@ -124,8 +123,5 @@ zle -N run_microphone run_microphone
 bindkey "^[[24~" run_microphone
 
 
-alias screenracket='screen -S racket -t racket racket'
-alias screenvim='screen -S scheme -t scheme vim ~/scheme/bookread/book.scm'
 alias git-help='cat ~/.git-help'
-alias book='cd /home/chemist/scheme/bookread'
 
