@@ -1,11 +1,12 @@
 :set prompt " >>> "
 :set +t
---:set -XOverloadedStrings
---import qualified Data.ByteString as S
---import qualified Data.ByteString.Lazy as L
---import qualified Data.Binary as B
+:set -XOverloadedStrings
+:set -isrc
+import qualified Data.ByteString as S
+import qualified Data.ByteString.Lazy as L
+import qualified Data.Binary as B
 
---import System.IO.Russian.Console
+import System.IO.Russian.Console
 
 let ghciEscapeShellArg arg = "'" ++ concatMap (\x -> if x == '\'' then "'\"'\"'" else [x]) arg ++ "'"                             
 :def! search return . (":! hoogle --color --count=20 " ++) . ghciEscapeShellArg                                                   
