@@ -18,7 +18,7 @@ syn keyword hsFunction ab' aBA abandon abandonAll abb abb' abbr abe_mono abe_pol
 syn match  hsSpecialChar      contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&\\abfnrtv]\|^[A-Z^_\[\\\]]\)"
 syn match  hsSpecialChar      contained "\\\(NUL\|SOH\|STX\|ETX\|EOT\|ENQ\|ACK\|BEL\|BS\|HT\|LF\|VT\|FF\|CR\|SO\|SI\|DLE\|DC1\|DC2\|DC3\|DC4\|NAK\|SYN\|ETB\|CAN\|EM\|SUB\|ESC\|FS\|GS\|RS\|US\|SP\|DEL\)"
 syn match  hsSpecialCharError contained "\\&\|'''\+"
-syn region hsString           start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=hsSpecialChar
+syn region hsString           start=+"+  skip=+\\\\\|\\"\|λ"+  end=+"+  contains=hsSpecialChar
 syn match  hsCharacter        "[^a-zA-Z0-9_']'\([^\\]\|\\[^']\+\|\\'\)'"lc=1 contains=hsSpecialChar,hsSpecialCharError
 syn match  hsCharacter        "^'\([^\\]\|\\[^']\+\|\\'\)'" contains=hsSpecialChar,hsSpecialCharError
 syn match  hsNumber           "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
