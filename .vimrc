@@ -27,29 +27,35 @@ syntax on
 au BufEnter *.erl map <F9> :!rebar compile<CR>
 au BufEnter *.hs map <F9> :make<CR>
 au BufEnter *.go map <F9> :!go build<CR>
+au BufEnter *.go map <F10> :!./go<CR>
 map <F8> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowBookmarks = 1
 colorscheme desert256
 "colorscheme pablo
+"
 filetype plugin indent on
+
 " haskell autocomplete
+" cabal install ghc-mod
 let g:neocomplcache_enable_at_startup = 1
 let g:acp_enableAtStartup = 0
-"let g:neocomplcache_enable_smart_case = 1
-"let g:neocomplcache_enable_camel_case_completion = 1 
-"let g:neocomplcache_enable_underbar_completion = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>" 
 
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
+let $PATH = $PATH . ':' . expand("~/.ghc-7.6.3/bin")
 let erlang_folding = 1
-au BufEnter *.hs compiler ghc
 let g:haddock_indexfiledir = "/home/chemist/.vim/"
 let g:haddock_browser="/usr/bin/elinks"
 let g:haddock_browser_callformat = '%s -remote "openURL(%s)" '
 
-au FileType haskell map <buffer> ,h _?
-au FileType haskell map <buffer> ,o _?1
+"hoogle
+autocmd FileType haskell map ,h :HoogleDoc()<cr>
+autocmd FileType haskell map ,c :Hlint()<cr>
+" VIM-haskell
+"au BufEnter *.hs compiler ghc
+"au FileType haskell map <buffer> ,h _?
+"au FileType haskell map <buffer> ,o _?1
 
 au BufNewFile,BufRead *.yaml,*.yml    setf yaml
 
@@ -61,15 +67,19 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
   "     " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
+" cabal install stylish-haskell
+" ctrl - f for stylish
 autocmd FileType haskell noremap <buffer> <c-f> :call StylishHaskell()<cr>
 
-"let g:hdevtools_options = '-g -Wall'
-
+" cabal install hdevtools
+" settings for hdevtools
+let g:hdevtools_options = '-g -isrc'
 au FileType haskell nnoremap <buffer> ,t :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> ,i :HdevtoolsInfo<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 
-
+" cabal install lushtags
+" settings for lushtags
 let g:tagbar_ctags_bin = "~/.cabal/bin/lushtags"
 let g:tagbar_type_haskell = {
     \ 'ctagsbin' : '~/.cabal/bin/lushtags',
@@ -99,11 +109,13 @@ let g:tagbar_type_haskell = {
     \ }
 \ }
 
+
+
 au FileType haskell nnoremap <silent> ,, :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
-"python
 
+" russian
 map ё `
 map й q
 map ц w

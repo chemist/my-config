@@ -101,9 +101,10 @@ alias ls='ls --color=auto'
 alias s='dvtm '
 alias grep='grep --color=auto'
 alias clearx='sudo kill -USR1 `ps -C X -o pid=`'
+alias ghcis='ghci -isrc'
 
 
-export PATH=/home/chemist/.haskell/bin/:$PATH:/home/chemist/.cabal/bin/:~/develop/go/.gocode/bin
+export PATH=/home/chemist/.haskel-platform-2013-2/bin:/home/chemist/.ghc-7.6.3/bin:$PATH:/home/chemist/.cabal/bin/:~/develop/go/.gocode/bin
 export GOPATH=~/develop/go/.gocode
 
 	bindkey "^[[H" beginning-of-line
